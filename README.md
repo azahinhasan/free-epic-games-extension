@@ -48,7 +48,7 @@ It filters games to show only:
 - The extension fetches fresh data on each open
 
 ## Preview
-<img width="494" height="677" alt="Screenshot 2026-02-19 125720" src="https://github.com/user-attachments/assets/2cd13709-87c1-45c0-8207-be4163c733e3" />
+<img width="473" height="653" alt="Screenshot 2026-02-19 131416" src="https://github.com/user-attachments/assets/87d47ed1-c8ab-4bf3-b193-e30172117108" />
 
 ## License
 
