@@ -1,4 +1,4 @@
-# Free Epic Games Games Extension
+# Free Epic Games Information Extension
 
 A Chrome extension that shows current and upcoming free games from the Epic Games Store.
 
