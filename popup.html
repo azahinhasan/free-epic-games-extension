@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Epic Games Games</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="icons/icon48.png" alt="Epic Games" class="header-icon">
+      <h1>Free Epic Games</h1>
+      <button id="refresh-btn" class="refresh-btn" title="Refresh games">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+        </svg>
+      </button>
+    </header>
+    
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading free games...</p>
+    </div>
+    
+    <div id="error" class="error hidden">
+      <p>Failed to load games. Please try again.</p>
+      <button id="retry-btn">Retry</button>
+    </div>
+    
+    <div id="games-container" class="games-container hidden">
+      <div id="current-free" class="section">
+        <h2>🎁 Free Now</h2>
+        <div id="current-games" class="games-list"></div>
+      </div>
+      
+      <div id="upcoming-free" class="section hidden">
+        <h2>⏰ Coming Soon</h2>
+        <div id="upcoming-games" class="games-list"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
