@@ -8,7 +8,8 @@ const elements = {
   upcomingGames: document.getElementById('upcoming-games'),
   upcomingSection: document.getElementById('upcoming-free'),
   retryBtn: document.getElementById('retry-btn'),
-  refreshBtn: document.getElementById('refresh-btn')
+  refreshBtn: document.getElementById('refresh-btn'),
+  scrollIndicator: document.getElementById('scroll-indicator')
 };
 
 async function fetchFreeGames() {
@@ -194,6 +195,8 @@ function displayGames(games) {
   elements.loading.classList.add('hidden');
   elements.error.classList.add('hidden');
   elements.gamesContainer.classList.remove('hidden');
+  
+  setTimeout(updateScrollIndicator, 100);
 }
 
 function showError() {
@@ -242,6 +245,26 @@ async function loadGames() {
   }
 }
 
+function updateScrollIndicator() {
+  const container = elements.gamesContainer;
+  const hasScroll = container.scrollHeight > container.clientHeight;
+  const isAtBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 10;
+  
+  console.log('Scroll indicator check:', {
+    scrollHeight: container.scrollHeight,
+    clientHeight: container.clientHeight,
+    hasScroll: hasScroll,
+    isAtBottom: isAtBottom,
+    shouldShow: hasScroll && !isAtBottom
+  });
+  
+  if (hasScroll && !isAtBottom) {
+    elements.scrollIndicator.classList.remove('hidden');
+  } else {
+    elements.scrollIndicator.classList.add('hidden');
+  }
+}
+
 async function init() {
   chrome.runtime.sendMessage({ action: 'popupOpened' });
   
@@ -256,6 +279,19 @@ elements.retryBtn.addEventListener('click', loadGames);
 
 if (elements.refreshBtn) {
   elements.refreshBtn.addEventListener('click', loadGames);
+}
+
+if (elements.scrollIndicator) {
+  elements.scrollIndicator.addEventListener('click', () => {
+    elements.gamesContainer.scrollTo({
+      top: elements.gamesContainer.scrollHeight,
+      behavior: 'smooth'
+    });
+  });
+}
+
+if (elements.gamesContainer) {
+  elements.gamesContainer.addEventListener('scroll', updateScrollIndicator);
 }
 
 init();
