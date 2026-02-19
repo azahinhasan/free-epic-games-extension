@@ -4,11 +4,15 @@
   "version": "1.0.0",
   "description": "Shows current free games from Epic Games Store",
   "permissions": [
-    "storage"
+    "storage",
+    "alarms"
   ],
   "host_permissions": [
     "https://store-site-backend-static-ipv4.ak.epicgames.com/*"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
     "default_popup": "popup.html",
     "default_icon": {

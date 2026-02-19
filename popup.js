@@ -202,6 +202,21 @@ function showError() {
   elements.error.classList.remove('hidden');
 }
 
+async function loadFromCache() {
+  try {
+    const data = await chrome.storage.local.get(['games', 'lastUpdated']);
+    
+    if (data.games && data.games.length > 0) {
+      displayGames(data.games);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Error loading from cache:', error);
+    return false;
+  }
+}
+
 async function loadGames() {
   elements.loading.classList.remove('hidden');
   elements.error.classList.add('hidden');
@@ -213,6 +228,10 @@ async function loadGames() {
   
   try {
     const games = await fetchFreeGames();
+    await chrome.storage.local.set({
+      games: games,
+      lastUpdated: Date.now()
+    });
     displayGames(games);
   } catch (error) {
     showError();
@@ -223,10 +242,18 @@ async function loadGames() {
   }
 }
 
+async function init() {
+  const hasCachedData = await loadFromCache();
+  
+  if (!hasCachedData) {
+    await loadGames();
+  }
+}
+
 elements.retryBtn.addEventListener('click', loadGames);
 
 if (elements.refreshBtn) {
   elements.refreshBtn.addEventListener('click', loadGames);
 }
 
-loadGames();
+init();
