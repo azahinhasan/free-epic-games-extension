@@ -12,22 +12,13 @@ A Chrome extension that shows current and upcoming free games from the Epic Game
 
 ## Installation
 
-### Method 1: Load Unpacked Extension (Development)
+### Load Unpacked Extension (Development)
 
 1. Open Chrome and navigate to `chrome://extensions/`
 2. Enable **Developer mode** (toggle in the top-right corner)
 3. Click **Load unpacked**
 4. Select the `epic-games-free` folder
 5. The extension icon should appear in your Chrome toolbar
-
-### Method 2: Generate Icons First
-
-If you want proper icons instead of placeholders:
-
-1. Open `icons/generate-icons.html` in your browser
-2. Download all three icon files (icon16.png, icon48.png, icon128.png)
-3. Save them in the `icons/` folder
-4. Follow Method 1 to load the extension
 
 ## Usage
 
