@@ -37,40 +37,9 @@ If you want proper icons instead of placeholders:
 4. Click on any game card to open it in the Epic Games Store
 5. Click the **Retry** button if loading fails
 
-## How It Works
-
-The extension fetches data from Epic Games' official API:
-```
-https://store-site-backend-static-ipv4.ak.epicgames.com/freeGamesPromotions?locale=en-US
-```
-
 It filters games to show only:
 - **Promotional free games** (weekly/daily offers with limited time)
 - Excludes games that are always free
-
-## Technical Details
-
-- **Manifest Version**: 3
-- **Permissions**: Storage, API access
-- **No tracking**: All data is fetched directly from Epic Games
-- **Lightweight**: Minimal resource usage
-
-## Files Structure
-
-```
-epic-games-free/
-├── manifest.json          # Extension configuration
-├── popup.html            # Extension popup UI
-├── popup.css             # Styling
-├── popup.js              # Logic and API handling
-├── icons/                # Extension icons
-│   ├── icon16.png
-│   ├── icon48.png
-│   ├── icon128.png
-│   ├── icon.svg          # SVG source
-│   └── generate-icons.html
-└── README.md             # This file
-```
 
 ## Troubleshooting
 
@@ -86,6 +55,9 @@ epic-games-free/
 **Games not updating:**
 - Click the extension icon to refresh
 - The extension fetches fresh data on each open
+
+## Preview
+<img width="494" height="677" alt="Screenshot 2026-02-19 125720" src="https://github.com/user-attachments/assets/2cd13709-87c1-45c0-8207-be4163c733e3" />
 
 ## License
 
