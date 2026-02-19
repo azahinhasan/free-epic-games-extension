@@ -243,6 +243,8 @@ async function loadGames() {
 }
 
 async function init() {
+  chrome.runtime.sendMessage({ action: 'popupOpened' });
+  
   const hasCachedData = await loadFromCache();
   
   if (!hasCachedData) {
