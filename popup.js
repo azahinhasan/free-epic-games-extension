@@ -81,6 +81,19 @@ function getTimeRemaining(dateString) {
   return `${diffDays} days left`;
 }
 
+function getDaysUntilStart(dateString) {
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffTime = date - now;
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const diffHours = Math.ceil(diffTime / (1000 * 60 * 60));
+  
+  if (diffTime < 0) return 'Available now';
+  if (diffHours < 24) return `Coming in ${diffHours}h`;
+  if (diffDays === 1) return 'Coming tomorrow';
+  return `Coming in ${diffDays} days`;
+}
+
 function getGameImage(game) {
   const imageTypes = ['OfferImageWide', 'OfferImageTall', 'Thumbnail'];
   
@@ -139,7 +152,7 @@ function createGameCard(game, isUpcoming = false) {
     const promo = game.promotions.upcomingPromotionalOffers[0].promotionalOffers[0];
     dateInfo.start = formatDateTime(promo.startDate);
     dateInfo.end = formatDateTime(promo.endDate);
-    dateInfo.remaining = 'Coming soon';
+    dateInfo.remaining = getDaysUntilStart(promo.startDate);
   }
   
   card.innerHTML = `
@@ -266,8 +279,6 @@ function updateScrollIndicator() {
 }
 
 async function init() {
-  chrome.runtime.sendMessage({ action: 'popupOpened' });
-  
   const hasCachedData = await loadFromCache();
   
   if (!hasCachedData) {
